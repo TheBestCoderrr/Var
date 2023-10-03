@@ -132,6 +132,7 @@
     <ClCompile Include="Var.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Consts.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Var.h" />
   </ItemGroup>
