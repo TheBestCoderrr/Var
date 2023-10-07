@@ -20,6 +20,23 @@ public:
 	void Show() const;
 
 	String& operator=(const String& OtherString) noexcept;
+
+	String operator+(const String& OtherString) noexcept;
+	String operator-(const String& OtherString) noexcept;
 	String operator*(const String& OtherString) noexcept;
+	String operator/(const String& OtherString) noexcept;
+	
+	String& operator+=(const String& OtherString) noexcept;
+	String& operator-=(const String& OtherString) noexcept;
+	String& operator*=(const String& OtherString) noexcept;
+	String& operator/=(const String& OtherString) noexcept;
+	bool operator==(const String& OtherString) noexcept;
+	bool operator!=(const String& OtherString) noexcept;
+	bool operator>(const String& OtherString) noexcept;
+	bool operator<(const String& OtherString) noexcept;
+	bool operator>=(const String& OtherString) noexcept;
+	bool operator<=(const String& OtherString) noexcept;
+
+
 };
 

@@ -62,6 +62,26 @@ String& String::operator=(const String& OtherString) noexcept {
 	return *this;
 }
 
+String String::operator+(const String& OtherString) noexcept {
+	String result(strlen(str) + strlen(OtherString.str) + 1);
+	int i = 0;
+	for (; i < strlen(str); i++) 
+		result.GetStr()[i] = str[i];
+	for (int j = 0; j < strlen(OtherString.str); i++, j++)
+		result.GetStr()[i] = OtherString.str[j];
+	result.GetStr()[i] = '\0';
+	return result;
+}
+String String::operator-(const String& OtherString) noexcept {
+	String result(strlen(str) + strlen(OtherString.str) + 1);
+	int i = 0;
+	for (; i < strlen(str); i++)
+		result.GetStr()[i] = str[i];
+	for (int j = 0; j < strlen(OtherString.str); i++, j++)
+		result.GetStr()[i] = OtherString.str[j];
+	result.GetStr()[i] = '\0';
+	return result;
+}
 String String::operator*(const String& OtherString) noexcept {
 	String result;
 	int n = 0;
@@ -76,3 +96,96 @@ String String::operator*(const String& OtherString) noexcept {
 	result.str[n] = '\0';
 	return result;
 }
+String String::operator/(const String& OtherString) noexcept {
+	String result;
+	int n = 0;
+	bool perevirka;
+	for (int i = 0; i < strlen(str); i++) {
+		perevirka = true;
+		for (int j = 0; j <  strlen(OtherString.str); j++) {
+			if (str[i] == OtherString.str[j]) {
+				perevirka = false;
+				break;
+			}
+		}
+		if(perevirka)
+			result.str[n++] = str[i];
+	}
+	result.str[n] = '\0';
+	return result;
+}
+
+String& String::operator+=(const String& OtherString) noexcept {
+	String result(strlen(str) + strlen(OtherString.str) + 1);
+	int i = 0;
+	for (; i < strlen(str); i++)
+		result.GetStr()[i] = str[i];
+	for (int j = 0; j < strlen(OtherString.str); i++, j++)
+		result.GetStr()[i] = OtherString.str[j];
+	result.GetStr()[i] = '\0';
+	SetStr(result.GetStr());
+	return *this;
+}
+String& String::operator-=(const String& OtherString) noexcept {
+	String result(strlen(str) + strlen(OtherString.str) + 1);
+	int i = 0;
+	for (; i < strlen(str); i++)
+		result.GetStr()[i] = str[i];
+	for (int j = 0; j < strlen(OtherString.str); i++, j++)
+		result.GetStr()[i] = OtherString.str[j];
+	result.GetStr()[i] = '\0';
+	SetStr(result.GetStr());
+	return *this;
+}
+String& String::operator*=(const String& OtherString) noexcept {
+	String result;
+	int n = 0;
+	for (int i = 0; i < (strlen(str) <= strlen(OtherString.str) ? strlen(str) : strlen(OtherString.str)); i++) {
+		for (int j = 0; j < (strlen(str) > strlen(OtherString.str) ? strlen(str) : strlen(OtherString.str)); j++) {
+			if (str[i] == OtherString.str[j]) {
+				result.str[n++] = str[i];
+				break;
+			}
+		}
+	}
+	result.str[n] = '\0';
+	SetStr(result.GetStr());
+	return *this;
+}
+String& String::operator/=(const String& OtherString) noexcept {
+	String result;
+	int n = 0;
+	for (int i = 0; i < strlen(str); i++) {
+		for (int j = 0; j < strlen(OtherString.str); j++) {
+			if (str[i] != OtherString.str[j]) {
+				result.str[n++] = str[i];
+				break;
+			}
+			else
+				break;
+		}
+	}
+	result.str[n] = '\0';
+	SetStr(result.GetStr());
+	return *this;
+}
+
+bool String::operator==(const String& OtherString) noexcept {
+	return strcmp(str, OtherString.str) == 0?true:false;
+}
+bool String::operator!=(const String& OtherString) noexcept {
+	return strcmp(str, OtherString.str) != 0?true:false;
+}
+bool String::operator>(const String& OtherString) noexcept {
+	return strcmp(str, OtherString.str) == 1?true:false;
+}
+bool String::operator<(const String& OtherString) noexcept {
+	return strcmp(str, OtherString.str) == -1?true:false;
+}
+bool String::operator>=(const String& OtherString) noexcept {
+	return strcmp(str, OtherString.str) >= 0?true:false;
+}
+bool String::operator<=(const String& OtherString) noexcept {
+	return strcmp(str, OtherString.str) <= 0?true:false;
+}
+
